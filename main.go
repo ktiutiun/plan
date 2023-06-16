@@ -25,7 +25,7 @@ func main() {
 	log.Println("http://localhost:8080/")
 
 	renderer := &TemplateRenderer{
-		templates: template.Must(template.ParseGlob("*.html")),
+		templates: template.Must(template.ParseGlob("templates/*.html")),
 	}
 
 	e.Renderer = renderer

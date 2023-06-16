@@ -4,7 +4,15 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6ce06c4-019b-49e9-a4b5-ac0cded32964" name="Changes" comment="Removed unnecessary code" />
+    <list default="true" id="d6ce06c4-019b-49e9-a4b5-ac0cded32964" name="Changes" comment="Added git ignore">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/budget.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/health.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/health.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/navigator.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/navigator.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/startPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/startPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wishlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/wishlist.html" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,6 +57,9 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
     </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/templates" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
@@ -60,7 +71,8 @@
     <MESSAGE value="workplace" />
     <MESSAGE value="Added side menu and 3 pages" />
     <MESSAGE value="Removed unnecessary code" />
-    <option name="LAST_COMMIT_MESSAGE" value="Removed unnecessary code" />
+    <MESSAGE value="Added git ignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added git ignore" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
