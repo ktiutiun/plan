@@ -8,13 +8,6 @@ import (
 	"net/http"
 )
 
-type PageData struct {
-	Title     string
-	MenuItem1 string
-	MenuItem2 string
-	MenuItem3 string
-}
-
 type TemplateRenderer struct {
 	templates *template.Template
 }
@@ -37,34 +30,24 @@ func main() {
 
 	e.Renderer = renderer
 
-	templateData := &PageData{
-		Title:     "Plan",
-		MenuItem1: "Health",
-		MenuItem2: "Wishlist",
-		MenuItem3: "Budget",
-	}
-
-	e.Renderer = renderer
-
 	// Шаблон для стартової сторінки
 	e.GET("/", func(c echo.Context) error {
-		templateData.Title = "Plan"
-		return c.Render(http.StatusOK, "startPage.html", templateData)
+		return c.Render(http.StatusOK, "startPage.html", nil)
 	})
 
 	// Шаблон для сторінки "Health"
 	e.GET("/health", func(c echo.Context) error {
-		return c.Render(http.StatusOK, "health.html", templateData)
+		return c.Render(http.StatusOK, "health.html", nil)
 	})
 
 	// Шаблон для сторінки "Wishlist"
 	e.GET("/wishlist", func(c echo.Context) error {
-		return c.Render(http.StatusOK, "wishlist.html", templateData)
+		return c.Render(http.StatusOK, "wishlist.html", nil)
 	})
 
 	// Шаблон для сторінки "Budget"
 	e.GET("/budget", func(c echo.Context) error {
-		return c.Render(http.StatusOK, "budget.html", templateData)
+		return c.Render(http.StatusOK, "budget.html", nil)
 	})
 
 	err := e.Start(":8081")

@@ -4,8 +4,11 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6ce06c4-019b-49e9-a4b5-ac0cded32964" name="Changes" comment="Added side menu and 3 pages">
+    <list default="true" id="d6ce06c4-019b-49e9-a4b5-ac0cded32964" name="Changes" comment="Removed unnecessary code">
+      <change beforePath="$PROJECT_DIR$/air.toml" beforeDir="false" afterPath="$PROJECT_DIR$/air.toml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/budget.html" beforeDir="false" afterPath="$PROJECT_DIR$/budget.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/wishlist.html" beforeDir="false" afterPath="$PROJECT_DIR$/wishlist.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,9 +64,21 @@
     <MESSAGE value="Start, added first html" />
     <MESSAGE value="workplace" />
     <MESSAGE value="Added side menu and 3 pages" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added side menu and 3 pages" />
+    <MESSAGE value="Removed unnecessary code" />
+    <option name="LAST_COMMIT_MESSAGE" value="Removed unnecessary code" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$USER_HOME$/go/pkg/mod/github.com/labstack/echo/v4@v4.10.2/context.go</url>
+          <line>108</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
