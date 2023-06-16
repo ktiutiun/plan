@@ -1,0 +1,15 @@
+# air.toml
+
+# Пакет, який ви хочете відстежувати
+root = "."
+tmp_dir = "tmp"
+build_dir = "."
+
+[build]
+  cmd = "go build -o ./tmp/main"
+
+[[runners]]
+  name = "Main"
+  cmd = "go run main.go"
+  # Змініть шлях до вашого файлу main.go
+  paths = ["./main.go"]
