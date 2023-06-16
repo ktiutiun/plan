@@ -49,29 +49,21 @@ func main() {
 	// Шаблон для стартової сторінки
 	e.GET("/", func(c echo.Context) error {
 		templateData.Title = "Plan"
-		return c.Render(http.StatusOK, "startPage.html", map[string]string{
-			"page": "main",
-		})
+		return c.Render(http.StatusOK, "startPage.html", templateData)
 	})
 
 	// Шаблон для сторінки "Health"
 	e.GET("/health", func(c echo.Context) error {
-		templateData.Title = "Health"
-		return c.Render(http.StatusOK, "health.html", map[string]string{
-			"page": "budget",
-		})
-		//return c.Render(http.StatusOK, "budget.html", templateData)
+		return c.Render(http.StatusOK, "health.html", templateData)
 	})
 
-	// Шаблон для сторінки "Products"
+	// Шаблон для сторінки "Wishlist"
 	e.GET("/wishlist", func(c echo.Context) error {
-		templateData.Title = "Products"
 		return c.Render(http.StatusOK, "wishlist.html", templateData)
 	})
 
-	// Шаблон для сторінки "Cart"
+	// Шаблон для сторінки "Budget"
 	e.GET("/budget", func(c echo.Context) error {
-		templateData.Title = "Cart"
 		return c.Render(http.StatusOK, "budget.html", templateData)
 	})
 

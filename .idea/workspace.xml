@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6ce06c4-019b-49e9-a4b5-ac0cded32964" name="Changes" comment="workplace">
-      <change afterPath="$PROJECT_DIR$/budget.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/navigator.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/wishlist.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/health.html" beforeDir="false" afterPath="$PROJECT_DIR$/health.html" afterDir="false" />
+    <list default="true" id="d6ce06c4-019b-49e9-a4b5-ac0cded32964" name="Changes" comment="Added side menu and 3 pages">
       <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/startPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/startPage.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/tmp/main" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/main" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +60,8 @@
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Start, added first html" />
     <MESSAGE value="workplace" />
-    <option name="LAST_COMMIT_MESSAGE" value="workplace" />
+    <MESSAGE value="Added side menu and 3 pages" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added side menu and 3 pages" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>
