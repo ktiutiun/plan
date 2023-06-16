@@ -1,66 +1,11 @@
-<!DOCTYPE html>
 <html lang="">
 <head>
-    <title>{{.Title}}</title>
-    <style>
-        /* Стилі CSS для сторінки */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        .container {
-            display: flex;
-            height: 100vh;
-        }
-
-        .menu {
-            width: 200px;
-            background-color: #f1f1f1;
-            padding: 20px;
-        }
-
-        .content {
-            flex-grow: 1;
-            padding: 20px;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        li {
-            margin-bottom: 10px;
-        }
-
-        a {
-            text-decoration: none;
-            color: #333;
-            cursor: pointer;
-        }
-    </style>
-    <script>
-        function navigateTo(url) {
-            window.location.href = url;
-        }
-    </script>
+    <title>Start Page</title>
 </head>
 <body>
-<div class="container">
-    <div class="menu">
-        <ul>
-            <li><a onclick="navigateTo('/health')">{{.MenuItem1}}</a></li>
-            <li><a onclick="navigateTo('/products')">{{.MenuItem2}}</a></li>
-            <li><a onclick="navigateTo('/cart')">{{.MenuItem3}}</a></li>
-        </ul>
-    </div>
-    <div class="content">
-        <h1>{{.Title}}</h1>
-        <p>Вміст сторінки...</p>
-    </div>
+{{template "navigator"}}
+<div class="page">
+    <h1>Welcome</h1>
 </div>
 </body>
 </html>

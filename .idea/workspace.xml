@@ -4,7 +4,16 @@
     <option name="autoReloadType" value="ALL" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="d6ce06c4-019b-49e9-a4b5-ac0cded32964" name="Changes" comment="Start, added first html" />
+    <list default="true" id="d6ce06c4-019b-49e9-a4b5-ac0cded32964" name="Changes" comment="workplace">
+      <change afterPath="$PROJECT_DIR$/budget.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/navigator.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/wishlist.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/health.html" beforeDir="false" afterPath="$PROJECT_DIR$/health.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/startPage.html" beforeDir="false" afterPath="$PROJECT_DIR$/startPage.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/tmp/main" beforeDir="false" afterPath="$PROJECT_DIR$/tmp/main" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -40,11 +49,16 @@
     "RunOnceActivity.go.modules.go.list.on.any.changes.was.set": "true",
     "WebServerToolWindowFactoryState": "false",
     "go.import.settings.migrated": "true",
-    "last_opened_file_path": "/Users/ktiutiun",
+    "last_opened_file_path": "/Users/ktiutiun/GolandProjects/plan",
     "node.js.detected.package.eslint": "true",
     "node.js.selected.package.eslint": "(autodetect)"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
@@ -52,7 +66,8 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Start, added first html" />
-    <option name="LAST_COMMIT_MESSAGE" value="Start, added first html" />
+    <MESSAGE value="workplace" />
+    <option name="LAST_COMMIT_MESSAGE" value="workplace" />
   </component>
   <component name="VgoProject">
     <settings-migrated>true</settings-migrated>

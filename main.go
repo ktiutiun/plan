@@ -40,31 +40,44 @@ func main() {
 	templateData := &PageData{
 		Title:     "Plan",
 		MenuItem1: "Health",
-		MenuItem2: "Кошик",
-		MenuItem3: "Контакти",
+		MenuItem2: "Wishlist",
+		MenuItem3: "Budget",
 	}
 
+	e.Renderer = renderer
+
+	// Шаблон для стартової сторінки
 	e.GET("/", func(c echo.Context) error {
-		return c.Render(http.StatusOK, "startPage.html", templateData)
+		templateData.Title = "Plan"
+		return c.Render(http.StatusOK, "startPage.html", map[string]string{
+			"page": "main",
+		})
 	})
 
+	// Шаблон для сторінки "Health"
 	e.GET("/health", func(c echo.Context) error {
-		templateData.Title = templateData.MenuItem1
-		return c.Render(http.StatusOK, "health.html", templateData)
+		templateData.Title = "Health"
+		return c.Render(http.StatusOK, "health.html", map[string]string{
+			"page": "budget",
+		})
+		//return c.Render(http.StatusOK, "budget.html", templateData)
 	})
 
-	e.GET("/cart", func(c echo.Context) error {
-		templateData.Title = templateData.MenuItem2
-		return c.Render(http.StatusOK, "startPage.html", templateData)
+	// Шаблон для сторінки "Products"
+	e.GET("/wishlist", func(c echo.Context) error {
+		templateData.Title = "Products"
+		return c.Render(http.StatusOK, "wishlist.html", templateData)
 	})
 
-	e.GET("/contacts", func(c echo.Context) error {
-		templateData.Title = templateData.MenuItem3
-		return c.Render(http.StatusOK, "startPage.html", templateData)
+	// Шаблон для сторінки "Cart"
+	e.GET("/budget", func(c echo.Context) error {
+		templateData.Title = "Cart"
+		return c.Render(http.StatusOK, "budget.html", templateData)
 	})
 
-	err := e.Start(":8080")
+	err := e.Start(":8081")
 	if err != nil {
+		log.Printf("start server: %s", err)
 		return
 	}
 }
