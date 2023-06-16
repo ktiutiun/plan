@@ -19,7 +19,7 @@ type TemplateRenderer struct {
 	templates *template.Template
 }
 
-func (t *TemplateRenderer) Render(w io.Writer, name string, data interface{}, c echo.Context) error {
+func (t *TemplateRenderer) Render(w io.Writer, name string, data interface{}, _ echo.Context) error {
 	if err := t.templates.ExecuteTemplate(w, name, data); err != nil {
 		return err
 	}
@@ -63,5 +63,8 @@ func main() {
 		return c.Render(http.StatusOK, "startPage.html", templateData)
 	})
 
-	e.Start(":8080")
+	err := e.Start(":8080")
+	if err != nil {
+		return
+	}
 }
