@@ -12,26 +12,28 @@
         <th>Звички</th>
         <th>Шкала</th>
       </tr>
+      {{range $item := .}}
       <tr>
-        <td>Режим, сон, позитив</td>
+        <td>{{$item.Name}}</td>
         <td><label>
-          <input type="range" min="0" max="100">
+          <input type="range" min="0" max="100" onchange="updateScale({{$item.Name}}, this.value)" value={{$item.Scale}}>
         </label></td>
       </tr>
-      <tr>
-        <td>Збалансований раціон</td>
-        <td><label>
-          <input type="range" min="0" max="100">
-        </label></td>
-      </tr>
-      <tr>
-        <td>Обмежити цукор</td>
-        <td><label>
-          <input type="range" min="0" max="100">
-        </label></td>
-      </tr>
-      </table>
+      {{end}}
+    </table>
   </div>
 </div>
+<script>
+  function updateScale(habit, scale) {
+    // Виконати запит до сервера з використанням AJAX або Fetch API
+    fetch('/health/habits?habit=' + habit + '&scale=' + scale, {
+      method: 'POST'
+    })
+            .then()
+            .catch(error => {
+              console.error('Помилка при виконанні запиту:', error);
+            });
+  }
+</script>
 </body>
 </html>
