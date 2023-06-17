@@ -1,7 +1,9 @@
 package main
 
 import (
+	"database/sql"
 	"github.com/labstack/echo/v4"
+	_ "github.com/lib/pq"
 	"html/template"
 	"io"
 	"log"
@@ -19,7 +21,26 @@ func (t *TemplateRenderer) Render(w io.Writer, name string, data interface{}, _ 
 	return nil
 }
 
+func createDBConnection() (*sql.DB, error) {
+	db, err := sql.Open("postgres", "host=localhost port=5555 user=postgres password=postgres dbname=plan_database sslmode=disable")
+	if err != nil {
+		return nil, err
+	}
+
+	err = db.Ping()
+	if err != nil {
+		return nil, err
+	}
+
+	return db, nil
+}
+
 func main() {
+	// db, err := createDBConnection()
+	//if err != nil {
+	//	return
+	//}
+
 	e := echo.New()
 
 	log.Println("http://localhost:8080/")
