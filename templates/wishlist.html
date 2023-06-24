@@ -3,11 +3,26 @@
   <title>Wishlist</title>
 </head>
 <style>
-  .with_table {
-    width: 100%;
-    margin-bottom: 20px;
-    display: grid;
-    grid-template-columns: 200px 200px 200px 200px;
+
+  .wish_row {
+      margin-bottom: 5px;
+      width: 100%;
+      display: grid;
+      grid-template-columns: 200px 200px 200px 200px;
+  }
+
+  .wish_item {
+    border: 1px black solid;
+  }
+
+  .panel-item {
+    width: 200px;
+    /*margin: 0 10px;*/
+  }
+
+  .wish_panel {
+    display: flex;
+    flex-direction: row;
   }
 </style>
 <body>
@@ -15,26 +30,30 @@
 <div class="page">
   <h1>Сторінка "Wishlist"</h1>
   <div>
-    <div id="wishlist" class="with_table">
-        <div>Priority</div>
-        <div>Wish</div>
-        <div>Description</div>
-        <div> </div>
-      {{range $item := .}}
-        <div>{{$item.Priority}}</div>
-        <div>{{$item.Wish}}</div>
-        <div>{{$item.Description}}</div>
-        <div><a href="{{$item.Link}}">Link</a></div>
+    <div id="wishlist">
+      <div class="wish_row">
+        <div>Важливість</div>
+        <div>Бажання</div>
+        <div>Опис</div>
+        <div>Посилання</div>
+      </div>
+      {{range $index, $item := .}}
+      <div class="wish_row" id="wish_id_{{$item.ID}}">
+        <div class="wish_item" >{{$item.Priority}}</div>
+        <div class="wish_item" >{{$item.Wish}}</div>
+        <div class="wish_item" >{{$item.Description}}</div>
+        <div class="wish_item" ><a href="{{$item.Link}}">Link</a>
+            <span class="delete" onclick="deleteWish({{$item.ID}})">✕</span>
+        </div>
+      </div>
       {{end}}
     </div>
-    <div class="with_table">
-        <div><label for="priority"></label><input type="text" id="priority"></div>
-        <div><label for="wish"></label><input type="text" id="wish"></div>
-        <div><label for="description"></label><input type="text" id="description"></div>
-        <div><label for="link"></label><input type="text" id="link"></div>
-    </div>
-    <div>
-      <div><input type="submit" value="Додати" onclick="addWish()"></div>
+    <div class="wish_panel">
+      <input class="panel-item" type="text" id="priority">
+      <input class="panel-item" type="text" id="wish">
+      <input class="panel-item" type="text" id="description">
+      <input class="panel-item" type="text" id="link">
+      <input type="submit" value="Додати" onclick="addWish()">
     </div>
   </div>
 </div>
@@ -48,15 +67,25 @@
     fetch('/wishlist/add?priority=' + priority + '&wish=' + wish + '&description=' + description + '&link=' + link, {
       method: 'POST'
     })
-            .then(() => {
+            .then( async (resp) => {
+                if (!resp.ok) {
+                  return
+                }
+
+                let data = await resp.json()
+
                 const wishTable = document.getElementById("wishlist");
 
                 // Додання нового значення
                 wishTable.innerHTML += `
-                    <div>${priority}</div>
-                    <div>${wish}</div>
-                    <div>${description}</div>
-                    <div><a href="${link}">Link</a></div>`
+                <div class='wish_row' id="wish_id_${data.id}">
+                <div class="wish_item" >${data.priority}</div>
+                <div class="wish_item" >${data.wish}</div>
+                <div class="wish_item" >${data.description}</div>
+                <div class="wish_item" >
+                    <a href="${link}">Link</a>
+                    <span class="delete" onclick="deleteWish(${data.id})">✕</span>
+                </div></div>`
 
                 // Очистка полів форми
                 document.getElementById("priority").value = "";
@@ -65,9 +94,21 @@
                 document.getElementById("link").value = "";
             })
             .catch(error => {
-              console.error('Помилка при виконанні запиту:', error);
+                console.error('Помилка при виконанні запиту:', error);
             });
-  }
+    }
+
+    function deleteWish(id) {
+        fetch('/wishlist/delete?id=' + id, {
+            method: 'POST'
+        })
+            .then(() => {
+              document.getElementById(`wish_id_${id}`).remove()
+            })
+            .catch(error => {
+                console.error('Помилка при виконанні запиту:', error);
+            });
+    }
 </script>
 </body>
 </html>

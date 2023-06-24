@@ -19,13 +19,27 @@ func (h *Handler) GetWishlist(c echo.Context) error {
 
 func (h *Handler) AddWishlist(c echo.Context) error {
 	priority := c.QueryParam("priority")
-	wish := c.QueryParam("wish")
+	name := c.QueryParam("wish")
 	description := c.QueryParam("description")
 	link := c.QueryParam("link")
 
-	_, err := h.DB.Exec("INSERT INTO wishlist (priority, wish, description, link) VALUES ($1, $2, $3, $4)", priority, wish, description, link)
+	wish := store.Wish{}
+
+	err := h.DB.QueryRow("INSERT INTO wishlist (priority, wish, description, link) VALUES ($1, $2, $3, $4) RETURNING id, priority, wish, description, link", priority, name, description, link).
+		Scan(&wish.ID, &wish.Priority, &wish.Wish, &wish.Description, &wish.Link)
 	if err != nil {
 		log.Printf("database query error: %s", err)
+		return err
+	}
+
+	return c.JSON(http.StatusOK, wish)
+}
+
+func (h *Handler) DeleteWish(c echo.Context) error {
+	id := c.QueryParam("id")
+
+	_, err := h.DB.Exec("DELETE FROM wishlist WHERE id = $1", id)
+	if err != nil {
 		return err
 	}
 

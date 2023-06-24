@@ -65,6 +65,7 @@ func main() {
 	//Wishlist
 	e.GET("/wishlist", handler.GetWishlist)
 	e.POST("/wishlist/add", handler.AddWishlist)
+	e.POST("/wishlist/delete", handler.DeleteWish)
 
 	//Budget
 	e.GET("/budget", handler.GetBudget)
