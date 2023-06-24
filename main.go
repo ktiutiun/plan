@@ -3,7 +3,6 @@ package main
 import (
 	"database/sql"
 	"github.com/ktiutiun/plan.git/handlers"
-	"github.com/ktiutiun/plan.git/store"
 	"github.com/labstack/echo/v4"
 	_ "github.com/lib/pq"
 	"html/template"
@@ -62,15 +61,7 @@ func main() {
 	})
 
 	//Health
-	e.GET("/health", func(c echo.Context) error {
-		// Отримати значення шкал з бази даних
-		healthHabits, err := store.GetHealthHabits(db)
-		if err != nil {
-			log.Println("Помилка отримання значень шкал:", err)
-			return c.NoContent(http.StatusInternalServerError)
-		}
-		return c.Render(http.StatusOK, "health.html", healthHabits)
-	})
+	e.GET("/health", handler.GetHealthHabits)
 	e.POST("/health/habits", handler.AddHealthHabits)
 
 	//Wishlist
