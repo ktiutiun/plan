@@ -45,8 +45,6 @@ func main() {
 
 	e := echo.New()
 
-	log.Println("http://localhost:8080/")
-
 	renderer := &TemplateRenderer{
 		templates: template.Must(template.ParseGlob("templates/*.html")),
 	}
@@ -68,10 +66,12 @@ func main() {
 	e.GET("/wishlist", handler.GetWishlist)
 	e.POST("/wishlist/add", handler.AddWishlist)
 
-	// Шаблон для сторінки "Budget"
+	//Budget
 	e.GET("/budget", func(c echo.Context) error {
 		return c.Render(http.StatusOK, "budget.html", nil)
 	})
+
+	log.Println("http://localhost:8080/")
 
 	err = e.Start(":8080")
 	if err != nil {
