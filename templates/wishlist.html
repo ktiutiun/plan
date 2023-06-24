@@ -3,9 +3,52 @@
   <title>Wishlist</title>
 </head>
 <body>
-  {{template "navigator"}}
-  <div class="page">
-    <h1>Сторінка "Wishlist"</h1>
+{{template "navigator"}}
+<div class="page">
+  <h1>Сторінка "Wishlist"</h1>
+  <div>
+    <table>
+      <tr>
+        <th>Priority</th>
+        <th>Wish</th>
+        <th>Description</th>
+        <th>Link</th>
+      </tr>
+      {{range $item := .}}
+      <tr>
+        <td>{{$item.Priority}}</td>
+        <td>{{$item.Wish}}</td>
+        <td>{{$item.Description}}</td>
+        <td><a href="{{$item.Link}}">{{$item.Link}}</a></td>
+      </tr>
+      {{end}}
+      <tr>
+        <td><label for="priority"></label><input type="text" id="priority"></td>
+        <td><label for="wish"></label><input type="text" id="wish"></td>
+        <td><label for="description"></label><input type="text" id="description"></td>
+        <td><label for="link"></label><input type="text" id="link"></td>
+      </tr>
+      <tr>
+        <td><input type="submit" value="Додати" onclick="addWish()"></td>
+      </tr>
+    </table>
   </div>
+</div>
+<script>
+  function addWish() {
+    const priority = document.getElementById("priority").value;
+    const wish = document.getElementById("wish").value;
+    const description = document.getElementById("description").value;
+    const link = document.getElementById("link").value;
+
+    fetch('/wishlist/wishes?priority=' + priority + '&wish=' + wish + '&description=' + description + '&link=' + link, {
+      method: 'POST'
+    })
+            .then()
+            .catch(error => {
+              console.error('Помилка при виконанні запиту:', error);
+            });
+  }
+</script>
 </body>
 </html>

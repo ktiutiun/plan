@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"github.com/ktiutiun/plan.git/store"
 	"github.com/labstack/echo/v4"
 	_ "github.com/lib/pq"
 	"html/template"
@@ -13,11 +14,6 @@ import (
 type TemplateRenderer struct {
 	templates *template.Template
 	db        *sql.DB
-}
-
-type Habit struct {
-	Name  string
-	Scale int64
 }
 
 func (t *TemplateRenderer) Render(w io.Writer, name string, data interface{}, _ echo.Context) error {
@@ -39,29 +35,6 @@ func createDBConnection() (*sql.DB, error) {
 	}
 
 	return db, nil
-}
-
-func getHealthHabits(db *sql.DB) ([]Habit, error) {
-	// Запит до бази даних для отримання значень шкал
-	rows, err := db.Query("SELECT habit_name, scale FROM health_habits ORDER BY habit_name")
-	if err != nil {
-		return nil, err
-	}
-
-	habits := []Habit{}
-
-	for rows.Next() {
-		habit := Habit{}
-
-		err := rows.Scan(&habit.Name, &habit.Scale)
-		if err != nil {
-			return nil, err
-		}
-
-		habits = append(habits, habit)
-	}
-
-	return habits, nil
 }
 
 func main() {
@@ -88,7 +61,7 @@ func main() {
 	// Шаблон для сторінки "Health"
 	e.GET("/health", func(c echo.Context) error {
 		// Отримати значення шкал з бази даних
-		healthHabits, err := getHealthHabits(db)
+		healthHabits, err := store.GetHealthHabits(db)
 		if err != nil {
 			log.Println("Помилка отримання значень шкал:", err)
 			return c.NoContent(http.StatusInternalServerError)
@@ -110,7 +83,27 @@ func main() {
 
 	// Шаблон для сторінки "Wishlist"
 	e.GET("/wishlist", func(c echo.Context) error {
-		return c.Render(http.StatusOK, "wishlist.html", nil)
+		wishes, err := store.GetWishes(db)
+		if err != nil {
+			log.Println("Помилка отримання бажань:", err)
+			return c.NoContent(http.StatusInternalServerError)
+		}
+
+		return c.Render(http.StatusOK, "wishlist.html", wishes)
+	})
+	e.POST("/wishlist/wishes", func(c echo.Context) error {
+		priority := c.QueryParam("priority")
+		wish := c.QueryParam("wish")
+		description := c.QueryParam("description")
+		link := c.QueryParam("link")
+
+		_, err = db.Exec("INSERT INTO wishlist (priority, wish, description, link) VALUES ($1, $2, $3, $4)", priority, wish, description, link)
+		if err != nil {
+			log.Printf("database query error: %s", err)
+			return err
+		}
+
+		return c.NoContent(http.StatusOK)
 	})
 
 	// Шаблон для сторінки "Budget"
