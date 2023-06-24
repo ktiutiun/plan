@@ -67,9 +67,7 @@ func main() {
 	e.POST("/wishlist/add", handler.AddWishlist)
 
 	//Budget
-	e.GET("/budget", func(c echo.Context) error {
-		return c.Render(http.StatusOK, "budget.html", nil)
-	})
+	e.GET("/budget", handler.GetBudget)
 
 	log.Println("http://localhost:8080/")
 
