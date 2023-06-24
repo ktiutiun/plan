@@ -16,19 +16,15 @@
   <h1>Сторінка "Wishlist"</h1>
   <div>
     <div id="wishlist" class="with_table">
-<!--      <div>-->
         <div>Priority</div>
         <div>Wish</div>
         <div>Description</div>
         <div> </div>
-<!--      </div>-->
       {{range $item := .}}
-<!--      <div>-->
         <div>{{$item.Priority}}</div>
         <div>{{$item.Wish}}</div>
         <div>{{$item.Description}}</div>
         <div><a href="{{$item.Link}}">Link</a></div>
-<!--      </div>-->
       {{end}}
     </div>
     <div class="with_table">
@@ -54,11 +50,19 @@
     })
             .then(() => {
                 const wishTable = document.getElementById("wishlist");
+
+                // Додання нового значення
                 wishTable.innerHTML += `
                     <div>${priority}</div>
                     <div>${wish}</div>
                     <div>${description}</div>
                     <div><a href="${link}">Link</a></div>`
+
+                // Очистка полів форми
+                document.getElementById("priority").value = "";
+                document.getElementById("wish").value = "";
+                document.getElementById("description").value = "";
+                document.getElementById("link").value = "";
             })
             .catch(error => {
               console.error('Помилка при виконанні запиту:', error);
