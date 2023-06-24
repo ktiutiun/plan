@@ -16,7 +16,7 @@
       <tr>
         <td>{{$item.Name}}</td>
         <td><label>
-          <input type="range" min="0" max="100" onchange="updateScale({{$item.Name}}, this.value)" value={{$item.Scale}}>
+          <input type="range" min="0" max="100" onchange="updateScale('{{ $item.Name }}', '{{ toString $item.Scale }}')" value="{{ $item.Scale }}">
         </label></td>
       </tr>
       {{end}}
