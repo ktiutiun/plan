@@ -2,36 +2,44 @@
 <head>
   <title>Wishlist</title>
 </head>
+<style>
+  .with_table {
+    width: 100%;
+    margin-bottom: 20px;
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px;
+  }
+</style>
 <body>
 {{template "navigator"}}
 <div class="page">
   <h1>Сторінка "Wishlist"</h1>
   <div>
-    <table>
-      <tr>
-        <th>Priority</th>
-        <th>Wish</th>
-        <th>Description</th>
-        <th>Link</th>
-      </tr>
+    <div id="wishlist" class="with_table">
+<!--      <div>-->
+        <div>Priority</div>
+        <div>Wish</div>
+        <div>Description</div>
+        <div>Link</div>
+<!--      </div>-->
       {{range $item := .}}
-      <tr>
-        <td>{{$item.Priority}}</td>
-        <td>{{$item.Wish}}</td>
-        <td>{{$item.Description}}</td>
-        <td><a href="{{$item.Link}}">{{$item.Link}}</a></td>
-      </tr>
+<!--      <div>-->
+        <div>{{$item.Priority}}</div>
+        <div>{{$item.Wish}}</div>
+        <div>{{$item.Description}}</div>
+        <div><a href="{{$item.Link}}">Link</a></div>
+<!--      </div>-->
       {{end}}
-      <tr>
-        <td><label for="priority"></label><input type="text" id="priority"></td>
-        <td><label for="wish"></label><input type="text" id="wish"></td>
-        <td><label for="description"></label><input type="text" id="description"></td>
-        <td><label for="link"></label><input type="text" id="link"></td>
-      </tr>
-      <tr>
-        <td><input type="submit" value="Додати" onclick="addWish()"></td>
-      </tr>
-    </table>
+    </div>
+    <div class="with_table">
+        <div><label for="priority"></label><input type="text" id="priority"></div>
+        <div><label for="wish"></label><input type="text" id="wish"></div>
+        <div><label for="description"></label><input type="text" id="description"></div>
+        <div><label for="link"></label><input type="text" id="link"></div>
+    </div>
+    <div>
+      <div><input type="submit" value="Додати" onclick="addWish()"></div>
+    </div>
   </div>
 </div>
 <script>
@@ -44,7 +52,19 @@
     fetch('/wishlist/wishes?priority=' + priority + '&wish=' + wish + '&description=' + description + '&link=' + link, {
       method: 'POST'
     })
-            .then()
+            .then(() => {
+                const wishTable = document.getElementById("wishlist");
+
+                let row = document.createElement('tr')
+
+                row.innerHTML = `
+                    <div>${priority}</div>
+                    <div>${wish}</div>
+                    <div>${description}</div>
+                    <div><a href="${link}">${link}</a></div>`
+
+              wishTable.appendChild(row)
+            })
             .catch(error => {
               console.error('Помилка при виконанні запиту:', error);
             });
