@@ -3,12 +3,11 @@
   <title>Wishlist</title>
 </head>
 <style>
-
   .wish_row {
-      margin-bottom: 5px;
-      width: 100%;
-      display: grid;
-      grid-template-columns: 200px 200px 200px 200px;
+    margin-bottom: 5px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px;
   }
 
   .wish_item {
@@ -17,7 +16,6 @@
 
   .panel-item {
     width: 200px;
-    /*margin: 0 10px;*/
   }
 
   .wish_panel {
@@ -44,8 +42,8 @@
         <div class="wish_item" >{{$item.Description}}</div>
         <div class="wish_item" ><a href="{{$item.Link}}">Link</a>
             <span class="delete" onclick="deleteWish({{$item.ID}})">✕</span>
+          </div>
         </div>
-      </div>
       {{end}}
     </div>
     <div class="wish_panel">
@@ -68,13 +66,13 @@
       method: 'POST'
     })
             .then( async (resp) => {
-                if (!resp.ok) {
-                  return
-                }
+              if (!resp.ok) {
+                return
+              }
 
-                let data = await resp.json()
+              let data = await resp.json()
 
-                const wishTable = document.getElementById("wishlist");
+              const wishTable = document.getElementById("wishlist");
 
                 // Додання нового значення
                 wishTable.innerHTML += `
@@ -87,28 +85,28 @@
                     <span class="delete" onclick="deleteWish(${data.id})">✕</span>
                 </div></div>`
 
-                // Очистка полів форми
-                document.getElementById("priority").value = "";
-                document.getElementById("wish").value = "";
-                document.getElementById("description").value = "";
-                document.getElementById("link").value = "";
+              // Очистка полів форми
+              document.getElementById("priority").value = "";
+              document.getElementById("wish").value = "";
+              document.getElementById("description").value = "";
+              document.getElementById("link").value = "";
             })
             .catch(error => {
-                console.error('Помилка при виконанні запиту:', error);
+              console.error('Помилка при виконанні запиту:', error);
             });
-    }
+  }
 
-    function deleteWish(id) {
-        fetch('/wishlist/delete?id=' + id, {
-            method: 'POST'
-        })
+  function deleteWish(id) {
+    fetch('/wishlist/delete?id=' + id, {
+      method: 'POST'
+    })
             .then(() => {
               document.getElementById(`wish_id_${id}`).remove()
             })
             .catch(error => {
-                console.error('Помилка при виконанні запиту:', error);
+              console.error('Помилка при виконанні запиту:', error);
             });
-    }
+  }
 </script>
 </body>
 </html>
