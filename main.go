@@ -54,12 +54,14 @@ func main() {
 
 	e.Renderer = renderer
 
-	// Шаблон для стартової сторінки
+	handler := handlers.New(db)
+
+	//Стартова сторінка
 	e.GET("/", func(c echo.Context) error {
 		return c.Render(http.StatusOK, "startPage.html", nil)
 	})
 
-	// Шаблон для сторінки "Health"
+	//Health
 	e.GET("/health", func(c echo.Context) error {
 		// Отримати значення шкал з бази даних
 		healthHabits, err := store.GetHealthHabits(db)
@@ -69,21 +71,9 @@ func main() {
 		}
 		return c.Render(http.StatusOK, "health.html", healthHabits)
 	})
-	e.POST("/health/habits", func(c echo.Context) error {
-		scale := c.QueryParam("scale")
-		habit := c.QueryParam("habit")
+	e.POST("/health/habits", handler.AddHealthHabits)
 
-		_, err = db.Exec("INSERT INTO health_habits (habit_name, scale) VALUES ($1, $2) ON CONFLICT (habit_name) DO UPDATE SET scale = EXCLUDED.scale", habit, scale)
-		if err != nil {
-			log.Printf("database query error: %s", err)
-			return err
-		}
-
-		return c.NoContent(http.StatusOK)
-	})
-
-	// Шаблон для сторінки "Wishlist"
-	handler := handlers.New(db)
+	//Wishlist
 	e.GET("/wishlist", handler.GetWishlist)
 	e.POST("/wishlist/add", handler.AddWishlist)
 
