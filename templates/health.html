@@ -25,7 +25,6 @@
 </div>
 <script>
   function updateScale(habit, scale) {
-    // Виконати запит до сервера з використанням AJAX або Fetch API
     fetch('/health/habits?habit=' + habit + '&scale=' + scale, {
       method: 'POST'
     })
