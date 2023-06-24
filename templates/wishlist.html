@@ -49,21 +49,16 @@
     const description = document.getElementById("description").value;
     const link = document.getElementById("link").value;
 
-    fetch('/wishlist/wishes?priority=' + priority + '&wish=' + wish + '&description=' + description + '&link=' + link, {
+    fetch('/wishlist/add?priority=' + priority + '&wish=' + wish + '&description=' + description + '&link=' + link, {
       method: 'POST'
     })
             .then(() => {
                 const wishTable = document.getElementById("wishlist");
-
-                let row = document.createElement('tr')
-
-                row.innerHTML = `
+                wishTable.innerHTML += `
                     <div>${priority}</div>
                     <div>${wish}</div>
                     <div>${description}</div>
-                    <div><a href="${link}">${link}</a></div>`
-
-              wishTable.appendChild(row)
+                    <div><a href="${link}">Link</a></div>`
             })
             .catch(error => {
               console.error('Помилка при виконанні запиту:', error);

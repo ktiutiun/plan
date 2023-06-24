@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"github.com/ktiutiun/plan.git/handlers"
 	"github.com/ktiutiun/plan.git/store"
 	"github.com/labstack/echo/v4"
 	_ "github.com/lib/pq"
@@ -82,29 +83,9 @@ func main() {
 	})
 
 	// Шаблон для сторінки "Wishlist"
-	e.GET("/wishlist", func(c echo.Context) error {
-		wishes, err := store.GetWishes(db)
-		if err != nil {
-			log.Println("Помилка отримання бажань:", err)
-			return c.NoContent(http.StatusInternalServerError)
-		}
-
-		return c.Render(http.StatusOK, "wishlist.html", wishes)
-	})
-	e.POST("/wishlist/wishes", func(c echo.Context) error {
-		priority := c.QueryParam("priority")
-		wish := c.QueryParam("wish")
-		description := c.QueryParam("description")
-		link := c.QueryParam("link")
-
-		_, err = db.Exec("INSERT INTO wishlist (priority, wish, description, link) VALUES ($1, $2, $3, $4)", priority, wish, description, link)
-		if err != nil {
-			log.Printf("database query error: %s", err)
-			return err
-		}
-
-		return c.NoContent(http.StatusOK)
-	})
+	handler := handlers.New(db)
+	e.GET("/wishlist", handler.GetWishlist)
+	e.POST("/wishlist/add", handler.AddWishlist)
 
 	// Шаблон для сторінки "Budget"
 	e.GET("/budget", func(c echo.Context) error {
